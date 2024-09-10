@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>kamien papier nożyce</title>
+    <link rel="stylesheet" href="styles.css">
+    
+  </head>
+  <body>
+    <p class="title">Kamien Papier Nożyce</p>
+    <button class="scissor" onclick = "rockPaperScissor('kamien')"><img src="kamien-emoji.png"></button>
+    <button class="paper"onclick = "rockPaperScissor('papier')"><img src="papier-emoji.png"></button>
+    <button class="rock" onclick = "rockPaperScissor('nozyce')"><img src="nozyce-emoji.png"></button>
+    <p class="js-result result"></p>
+    <p class="js-showMove showMove"></p>
+    <p class="js-score score"></p>
+    <button class="reset" onclick = "wyniki.wygrane = 0, wyniki.przegrane = 0, wyniki.remis = 0, updateScore()">Resetuj wynik</button>
+    
+
+    
+    <script>
+      let wyniki = {
+        wygrane: 0,
+        przegrane: 0,
+        remis: 0,
+      }
+      wyniki = JSON.parse(localStorage.getItem('wyniki'))
+
+      function rockPaperScissor(playerMove) {  
+
+        const komputerMoveRandom = Math.random(); 
+        let komputerMove ;
+        if (komputerMoveRandom < 0.33 ){
+          komputerMove = "kamien"
+        }else
+        if (komputerMoveRandom > 0.33 && komputerMoveRandom < 0.66 ){
+          komputerMove = "papier"
+        }else komputerMove="nozyce"
+        
+        
+        let wynik ;
+        if (playerMove === "kamien"){
+          if(komputerMove === "kamien"){
+            wynik = "Remis :I";
+          }else if(komputerMove === "papier"){
+            wynik = "Przegrales :C";
+          }else{
+            wynik = "Wygrales :D";
+          }
+        }else if (playerMove === "papier"){
+          if(komputerMove === "kamien"){
+            wynik = "Wygrales :D";
+          }else if(komputerMove === "papier"){
+            wynik = "Remis :I";
+          }else{
+            wynik = "Przegrales :C";
+          }
+        }else {
+          if(komputerMove === "kamien"){
+            wynik = "Przegrales :C";
+          }else if(komputerMove === "papier"){
+            wynik = "Wygrales :D";
+          }else{
+            wynik = "Remis :I";
+          }
+        }
+
+        if (wynik ==="Przegrales :C"){wyniki.przegrane ++}
+        if (wynik ==="Wygrales :D"){wyniki.wygrane ++}
+        if (wynik ==="Remis :I"){wyniki.remis ++}
+        
+        localStorage.setItem('wyniki' , JSON.stringify(wyniki))
+        updateScore();
+        document.querySelector('.js-showMove').innerHTML = ` Wybrales  <img src="${playerMove}-emoji.png">    Komputer wybral <img src="${komputerMove}-emoji.png">`
+        document.querySelector('.js-result').innerHTML = `${wynik} `
+      }
+      function updateScore(){
+        document.querySelector('.js-score').innerHTML = ` Wygrane: ${wyniki.wygrane}, Przegrane: ${wyniki.przegrane}, Remisy: ${wyniki.remis},`
+      }
+      updateScore();
+
+    </script>
+  </body>
+</html>

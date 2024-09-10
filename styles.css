@@ -1,0 +1,53 @@
+
+      body{
+        background-color: #1f1f1f;
+        color: white;
+        font-family: monospace;
+      } 
+      .title{
+        font-size: 26px;
+        font-weight: 600;
+        align-items: center;
+
+       }
+       .scissor,
+       .paper,
+       .rock{
+        height: 100px;
+        width: 100px;
+        background-color: #1f1f1f;
+        border: 2px;
+        border-radius: 50px;
+        border-color: whitesmoke;
+        border-style: solid;
+       }
+       .scissor:hover,
+       .paper:hover,
+       .rock:hover{
+        background-color: #131313;
+        border-color: rgb(247, 248, 152);
+       }
+       img{
+        height: 60px;
+       }
+       .result{
+        font-size: 30px;
+
+
+       }
+       .showMove{
+        margin-bottom: 20px;
+
+       }
+
+       .reset{
+        border: none;
+        background-color: rgb(204, 228, 228);
+        border-radius: 20px;
+        font-size: 12px;
+        padding: 10px;
+        cursor: pointer;
+       }
+       .reset:hover{
+        background-color: rgb(166, 167, 167);
+       }
